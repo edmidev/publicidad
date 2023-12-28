@@ -1,0 +1,111 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-4ed993c7.js",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-b6cc1770.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.js": {
+    "assets": [
+      "assets/auth-img-22f254a5.jpg",
+      "assets/logo-dark-9790fade.png",
+      "assets/logo-93423f8c.png",
+      "assets/avatar-5-7f5e107a.jpg",
+      "assets/avatar-1-d6485790.jpg",
+      "assets/small-3-542c4a2b.jpg",
+      "assets/small-4-9195da9b.jpg",
+      "assets/small-2-fa932498.jpg",
+      "assets/small-1-d4ce471b.jpg",
+      "assets/logo-sm-0f230d8e.png",
+      "assets/us-4c7fd9b2.jpg",
+      "assets/germany-b051a166.jpg",
+      "assets/italy-269e8284.jpg",
+      "assets/spain-5a70d23c.jpg",
+      "assets/russia-634e6377.jpg",
+      "assets/avatar-2-6ee423e5.jpg",
+      "assets/avatar-3-e228f5d0.jpg",
+      "assets/avatar-4-b607a950.jpg"
+    ],
+    "css": [
+      "assets/app-b6cc1770.css"
+    ],
+    "file": "assets/app-b06542cc.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/js/assets/images/auth-img.jpg": {
+    "file": "assets/auth-img-22f254a5.jpg",
+    "src": "resources/js/assets/images/auth-img.jpg"
+  },
+  "resources/js/assets/images/flags/germany.jpg": {
+    "file": "assets/germany-b051a166.jpg",
+    "src": "resources/js/assets/images/flags/germany.jpg"
+  },
+  "resources/js/assets/images/flags/italy.jpg": {
+    "file": "assets/italy-269e8284.jpg",
+    "src": "resources/js/assets/images/flags/italy.jpg"
+  },
+  "resources/js/assets/images/flags/russia.jpg": {
+    "file": "assets/russia-634e6377.jpg",
+    "src": "resources/js/assets/images/flags/russia.jpg"
+  },
+  "resources/js/assets/images/flags/spain.jpg": {
+    "file": "assets/spain-5a70d23c.jpg",
+    "src": "resources/js/assets/images/flags/spain.jpg"
+  },
+  "resources/js/assets/images/flags/us.jpg": {
+    "file": "assets/us-4c7fd9b2.jpg",
+    "src": "resources/js/assets/images/flags/us.jpg"
+  },
+  "resources/js/assets/images/logo-dark.png": {
+    "file": "assets/logo-dark-9790fade.png",
+    "src": "resources/js/assets/images/logo-dark.png"
+  },
+  "resources/js/assets/images/logo-sm.png": {
+    "file": "assets/logo-sm-0f230d8e.png",
+    "src": "resources/js/assets/images/logo-sm.png"
+  },
+  "resources/js/assets/images/logo.png": {
+    "file": "assets/logo-93423f8c.png",
+    "src": "resources/js/assets/images/logo.png"
+  },
+  "resources/js/assets/images/small/small-1.jpg": {
+    "file": "assets/small-1-d4ce471b.jpg",
+    "src": "resources/js/assets/images/small/small-1.jpg"
+  },
+  "resources/js/assets/images/small/small-2.jpg": {
+    "file": "assets/small-2-fa932498.jpg",
+    "src": "resources/js/assets/images/small/small-2.jpg"
+  },
+  "resources/js/assets/images/small/small-3.jpg": {
+    "file": "assets/small-3-542c4a2b.jpg",
+    "src": "resources/js/assets/images/small/small-3.jpg"
+  },
+  "resources/js/assets/images/small/small-4.jpg": {
+    "file": "assets/small-4-9195da9b.jpg",
+    "src": "resources/js/assets/images/small/small-4.jpg"
+  },
+  "resources/js/assets/images/users/avatar-1.jpg": {
+    "file": "assets/avatar-1-d6485790.jpg",
+    "src": "resources/js/assets/images/users/avatar-1.jpg"
+  },
+  "resources/js/assets/images/users/avatar-2.jpg": {
+    "file": "assets/avatar-2-6ee423e5.jpg",
+    "src": "resources/js/assets/images/users/avatar-2.jpg"
+  },
+  "resources/js/assets/images/users/avatar-3.jpg": {
+    "file": "assets/avatar-3-e228f5d0.jpg",
+    "src": "resources/js/assets/images/users/avatar-3.jpg"
+  },
+  "resources/js/assets/images/users/avatar-4.jpg": {
+    "file": "assets/avatar-4-b607a950.jpg",
+    "src": "resources/js/assets/images/users/avatar-4.jpg"
+  },
+  "resources/js/assets/images/users/avatar-5.jpg": {
+    "file": "assets/avatar-5-7f5e107a.jpg",
+    "src": "resources/js/assets/images/users/avatar-5.jpg"
+  }
+}

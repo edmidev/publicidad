@@ -1,0 +1,36 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-4ed993c7.js",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-89e7cb33.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.js": {
+    "assets": [
+      "assets/auth-img-e48b2e60.jpg",
+      "assets/dr_ozono-2e924af6.svg",
+      "assets/dr_ozono_sm-c65d7c38.svg"
+    ],
+    "css": [
+      "assets/app-89e7cb33.css"
+    ],
+    "file": "assets/app-879dcd32.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/js/assets/images/auth-img.jpg": {
+    "file": "assets/auth-img-e48b2e60.jpg",
+    "src": "resources/js/assets/images/auth-img.jpg"
+  },
+  "resources/js/assets/images/dr_ozono.svg": {
+    "file": "assets/dr_ozono-2e924af6.svg",
+    "src": "resources/js/assets/images/dr_ozono.svg"
+  },
+  "resources/js/assets/images/dr_ozono_sm.svg": {
+    "file": "assets/dr_ozono_sm-c65d7c38.svg",
+    "src": "resources/js/assets/images/dr_ozono_sm.svg"
+  }
+}
