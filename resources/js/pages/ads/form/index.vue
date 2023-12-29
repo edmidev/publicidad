@@ -73,36 +73,28 @@
 
 import { axios } from './../../../services'
 import { ref, inject, onMounted } from 'vue'
-import { useHelperStore } from '../../../stores'
 
-const helperStore = useHelperStore()
+const emit = defineEmits(['refresh'])
 const toast = inject('toast')
 const $loading = inject('$loading')
 
 const props = defineProps({
-    client: {
+    item: {
         type: Object,
         default() {
             return {}
         }
     },
-    documentFile: {
-        type: Object,
-        default() {
-            return {}
-        }
-    }
 })
 
 const dropzone = ref(null)
 const dropzoneKey = ref(0)
 const payload = ref({})
 const errors = ref({})
-const showListDocuments = ref(false)
 const positionsList = [
     {
         id: 'left',
-        name: 'Izquiera'
+        name: 'Izquierda'
     },
     {
         id: 'right',
@@ -111,6 +103,10 @@ const positionsList = [
     {
         id: 'top',
         name: 'Arriba'
+    },
+    {
+        id: 'bottom',
+        name: 'Abajo'
     },
 ]
 
@@ -137,6 +133,7 @@ const save = async () => {
             // eslint-disable-next-line no-undef
             $('#ads-form-modal').modal('hide')
             toast.success(data.message)
+            emit('refresh')
         } else {
             toast.error(data.message)
             errors.value = data.errors
@@ -151,24 +148,17 @@ const save = async () => {
 onMounted(() => {
     // eslint-disable-next-line no-undef
     $('#ads-form-modal').on('shown.bs.modal', function () {
-        if (props.client) {
-            payload.value.client_names = props.client.names
-            payload.value.client_id = props.client.id
-        }
-        if(helperStore.itemType == 'document'){
-            payload.value.id = helperStore.selectedItem.id
-            payload.value.name = helperStore.selectedItem.name
-            helperStore.reset()
-            showListDocuments.value = true
+        if (props.item) {
+            payload.value.id = props.item.id
+            payload.value.name = props.item.name
+            payload.value.url = props.item.url
+            payload.value.position = props.item.position
+            payload.value.imagePath = props.item.image
         }
     }).on('hide.bs.modal', function () {
         payload.value = {}
         errors.value = {}
         dropzoneKey.value += 1
-        if(showListDocuments.value){
-            // eslint-disable-next-line no-undef
-            $('#document-files-index-modal').modal('show')
-        }
     })
 })
 

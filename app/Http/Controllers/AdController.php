@@ -78,6 +78,8 @@ class AdController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string'],
+            'url' => ['required', 'url'],
+            'position' => ['required', 'string'],
         ]);
 
         if ($validator->fails()) {
@@ -90,14 +92,26 @@ class AdController extends Controller
 
         try{
             $ad = Ad::findOrFail($request->id);
-            if ($request->hasFile('file')){
-                $folder = 'public/document/files';
-                $microtime = microtime();
-                $filename = random_int(1000, 9999).explode(' ', $microtime)[1]. '.'.$request->file->getClientOriginalExtension();
-                $path = Storage::putFileAs($folder, $request->file, $filename);
-                $ad->path = $path;
-            }
             $ad->name = $request->name;
+            $ad->url = $request->url;
+            $ad->position = $request->position;
+
+            if ($request->hasFile('image')){
+                $folder = 'public/images';
+                $microtime = microtime();
+                $filename = random_int(1000, 9999).explode(' ', $microtime)[1]. '.'.$request->image->getClientOriginalExtension();
+                $path = Storage::putFileAs($folder, $request->image, $filename);
+                $ad->image = $path;
+            }
+
+            $active = Ad::where('position', $ad->position)
+                            ->whereNotNull('state')
+                            ->first();
+            if ($active){
+                $active->state = null;
+                $active->save();
+            }
+            $ad->state = 'active';
 
             $ad->save();
             return $this->successResponse([
@@ -137,5 +151,37 @@ class AdController extends Controller
             $register->delete();
         }
         return $this->successResponse(null, 'Registro actualizar exitosamente');
+    }
+
+    public function toggleState(Request $request)
+    {
+        $id = $request->id;
+        $ad = Ad::find($id);
+        if ($ad->state) {
+            $ad->state = null;
+            $ad->save();
+            return $this->successResponse(null, 'Registro desactivado exitosamente');
+        } else {
+            $active = Ad::where('position', $ad->position)
+                            ->whereNotNull('state')
+                            ->first();
+            if ($active){
+                $active->state = null;
+                $active->save();
+            }
+
+            $ad->state = 'active';
+            $ad->save();
+            return $this->successResponse(null, 'Registro ACTIVADO exitosamente');
+        }
+    }
+
+    public function fetchAds() 
+    {
+        $ads = Ad::whereNotNull('state')->select(['image', 'url', 'position', 'name'])->get();
+        foreach ($ads as $ad) {
+            $ad->image = url($ad->image);
+        }
+        return response()->json($ads);
     }
 }

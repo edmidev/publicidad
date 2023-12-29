@@ -30,19 +30,36 @@
                         <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                             <thead>
                                 <tr>
-                                    <th>Nombre y apellido</th>
-                                    <th>Correo electrónico</th>
-                                    <th>Teléfono</th>
-                                    <th>Dirección</th>
+                                    <th class="text-center">Imagen</th>
+                                    <th>Nombre</th>
+                                    <th>Posición</th>
+                                    <th>Url</th>
+                                    <th>Estado</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="item in dataList" :key="item.id">
+                                    <td class="text-center">
+                                        <a :href="getImagePath(item)" target="_blank">
+                                            <img :src="getImagePath(item)" style="max-height: 150px; max-width: 100%"/>
+                                        </a>
+                                    </td>
                                     <td>{{ item.name }}</td>
-                                    <td>{{ item.email }}</td>
-                                    <td>{{ item.phone }}</td>
-                                    <td>{{ item.address }}</td>
+                                    <td>{{ positions[item.position] }}</td>
+                                    <td>
+                                        <a :href="item.url" target="_blank">
+                                            {{ item.url }}
+                                        </a>
+                                    </td>                                    
+                                    <td>
+                                        <span class="badge pointer p-2 fs-5 me-1" 
+                                            :class="(item.state) ? 'bg-primary' : 'bg-danger'"
+                                            :title="(item.state) ? 'Activar' : 'Desactivar'"
+                                        >
+                                            {{ item.state ? 'Activo' : 'Inactivo' }}
+                                        </span>
+                                    </td>
                                     <td>
                                         <div class="d-flex">
                                             <span class="badge bg-warning pointer p-2 fs-5 me-1" title="Editar"
@@ -51,9 +68,15 @@
                                             </span>
                                             <span class="badge pointer p-2 fs-5 me-1"
                                                 :class="(item.deleted_at) ? 'bg-primary' : 'bg-danger'"
-                                                :title="(item.deleted_at) ? 'Habilitar' : 'Deshabitilitar'"
+                                                :title="(item.deleted_at) ? 'Habilitar' : 'Borrar'"
                                                 @click="toggleRegister(item)">
                                                 <i class="ri-delete-bin-2-line"></i>
+                                            </span>
+                                            <span class="badge pointer p-2 fs-5 me-1"
+                                                :class="(!item.state) ? 'bg-primary' : 'bg-danger'"
+                                                :title="(!item.state) ? 'Activar' : 'Desactivar'"
+                                                @click="toggleStateRegister(item)">
+                                                <i class="ri-focus-2-line"></i>
                                             </span>
                                         </div>
                                     </td>
@@ -68,16 +91,17 @@
                 </div> <!-- end card -->
             </div><!-- end col-->
         </div> <!-- end row-->
-        <Modal :item="itemSelected" @updateData="fetchData"/>
+        <Modal :item="itemSelected" @refresh="fetchData"/>
     </div>
 </template>
 
 <script setup>
 
 import { axios } from './../../../services'
-import { ref, inject } from 'vue'
+import { ref, inject, onMounted } from 'vue'
 import Modal from './../form/index.vue'
 import Paginator from './../../../components/paginator/main.vue'
+import { CONST } from './../../../services'
 
 const dataList = ref([])
 const search = ref({})
@@ -85,8 +109,14 @@ const paginator = ref({})
 const itemSelected = ref({})
 const toast = inject('toast')
 const $loading = inject('$loading')
+const positions = {
+    left: 'Izquierda',
+    right: 'Derecha',
+    top: 'Arriba',
+    bottom: 'Abajo'
+}
 
-const fetchData = async (url = 'users/search') => {
+const fetchData = async (url = 'ads/search') => {
     const loader = $loading.show()
 
     try {
@@ -101,6 +131,10 @@ const fetchData = async (url = 'users/search') => {
     }
 }
 
+const getImagePath = (item) => {
+    return CONST.baseUrl + item.image
+}
+
 const selectItem = (item = null) => {
     itemSelected.value = item
     // eslint-disable-next-line no-undef
@@ -110,7 +144,26 @@ const selectItem = (item = null) => {
 const toggleRegister = async (item) => {
     const loader = $loading.show()
     try {
-        const response = await axios.post('users/toggle/' + item.id)
+        const response = await axios.post('ads/toggle/' + item.id)
+        const data = response.data
+
+        if (data.status) {
+            toast.success(data.message)
+            fetchData()
+        } else {
+            toast.error(data.message)
+        }
+    } catch (e) {
+        // console.log(e)
+    } finally {
+        loader.hide()
+    }
+}
+
+const toggleStateRegister = async(item) => {
+    const loader = $loading.show()
+    try {
+        const response = await axios.post('ads/statue/toggle/' + item.id, {id: item.id})
         const data = response.data
 
         if (data.status) {
@@ -131,5 +184,8 @@ const cleanFilters = () => {
     fetchData()
 }
 
+onMounted(() => {
+    fetchData()
+})
 
 </script>

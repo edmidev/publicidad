@@ -29,6 +29,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('get/actual/images', [AdController::class, 'fetchAds']);
+
 Route::post('login', [AuthController::class, 'authenticate']);
 Route::post('generate/reset/password/link', [AuthController::class, 'generatePasswordResentLink']);
 Route::post('reset/password', [AuthController::class, 'resetPassword']);
@@ -51,6 +53,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('ads/{id}', [AdController::class, 'update']);
     Route::delete('ads/{id}', [AdController::class, 'delete']);
     Route::post('ads/toggle/{id}', [AdController::class, 'toggle']);
+    Route::post('ads/statue/toggle/{ad}', [AdController::class, 'toggleState']);
 
     // Route::post('therapy/details/{therapyId}/sessions', [TherapyDetailController::class, 'calculateSessionNumber']);
     // Route::post('therapy/details', [TherapyDetailController::class, 'store']);

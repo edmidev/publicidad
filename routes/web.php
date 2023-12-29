@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdController;
 use Illuminate\Support\Facades\Route;
 use App\Models\TherapeuticBehavior;
 use App\Models\TherapyDetail;
@@ -18,19 +19,6 @@ use App\Models\TherapyDetail;
 Route::get('/', function () {
     return redirect('/login');
 });
-
-// Route::get('/fix/database', function() {
-//     $behaviors = TherapeuticBehavior::all();
-//     foreach ($behaviors as $b) {
-//         $details = TherapyDetail::where('therapeutic_behavior_id', $b->id)->orderBy('date', 'asc')->get();
-//         foreach ($details as $key => $d) {
-//             $d->session_number = $key + 1;
-//             $d->save();
-//         }
-//     }
-//     return 'Fixed';
-// });
-
 
 Route::get('/{vue_capture?}', function () {
     return view('index');
