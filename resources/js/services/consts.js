@@ -1,5 +1,5 @@
 const CONST = {
-    baseUrl: 'http://api.larevistavision.com/',
+    baseUrl: 'https://api.larevistavision.com/',
     // baseUrl: 'https://drozono.edgarr.site/',
     documentTypes: [
         {
